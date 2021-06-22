@@ -1,0 +1,38 @@
+About
+----------
+
+This small script adds a new option to the GameInstance compent called Player Layer, the script will then set the local player
+characters gameobject and all children (nested too) to the selected Player Layer. Because of the way the asset is out of the box 
+most child objects will use the Character Layer from the GameInstance and so I only change the layer of any child objects that is 
+currently set to Character.
+The script will change layers on entity awake, weapon change & equipment change events.
+
+Why?
+----------
+
+While creating my UI I used a render texture to display the players character but because the player is set on the same layer as 
+other players and enemies(NME) etc, if you was too close to another player / NME then you would see them in the UI too. This wasnt what 
+I needed in my game and so I created this script.
+
+How To Use
+----------
+
+1. Import the package to your project, nothing is overwritten
+2. Add the UICameraHolder prefab to your GameInstance "Owning Character Objects"
+3. Change the Player Layer on your GameInstance component to the desired layer e.g. Player
+4. Add a new Raw Image to your UI where you would like your Character to be displayed & set the texture to the provided UICharacter render texture
+5. Add your player layer to your Main Camera's "Culling Mask"
+6. All done
+
+Notes
+----------
+
+# You may have to re-assign the Target Texture on the UICameraHolder > Camera
+# Dont forget to adjust the UICameraHolder > Camera transform & rotation if you cant see you character in your UI
+
+Update Notes
+----------
+
+1.0.1
+FIX: The player layer is now only applied to child objects that have a "Renderer" component to fix issues with NPCs not attacking etc due to layers.
+	- Credit: @BJPickles had this idea, hats off to them.
